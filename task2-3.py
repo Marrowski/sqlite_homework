@@ -1,5 +1,5 @@
 import sqlite3
-from task1 import add_operation
+from main import add_operation, add_type
 
 
 def interface():
@@ -10,14 +10,10 @@ def interface():
         action = int(input('What would you like to do:'))
         if action == 1:
             try:
-                add_operation(input('Input an appointment:'), float(input('Input a sum of money:')), input('Input tine of operation:'))
+                add_type(input('Input an appointment'), float(input('Input sum of money:')), input('Input date/time of operation'),input('Input type:'))
             except sqlite3.IntegrityError:
-                print('Name is already exists in table. Try another one.')
+                print('This record already exists. Try again.')
         elif action == 2:
             print('Goodbye.')
             break
-        else:
-            print('Unknown action.')
-            continue
-
 interface()

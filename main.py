@@ -13,10 +13,9 @@ def create_table_money():
     time TEXT NOT NULL UNIQUE
     );
     '''
-
     cursor.execute(query)
 
-create_table_money()
+
 
 
 def add_operation(appointment: str, sum: float, time: str):
@@ -27,3 +26,18 @@ def add_operation(appointment: str, sum: float, time: str):
     connection.commit()
 
 
+def edit_table():
+    query = '''
+    ALTER TABLE Shop ADD COLUMN type VARCHAR(255) NOT NULL;
+    '''
+    cursor.execute(query)
+
+
+
+
+def add_type(appointment: str, sum: float, time: str, type: str):
+    query = '''
+    INSERT OR IGNORE INTO Shop(appointment, sum, time, type) VALUES(?,?,?,?);
+    '''
+    cursor.execute(query, [appointment, sum, time, type])
+    connection.commit()
